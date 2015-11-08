@@ -35,6 +35,7 @@ module.exports = function (grunt) {
         {
             text = banner + text;
         }
+        console.log(text);
         fs.writeFileSync(outFile, text);
     });
 
@@ -48,13 +49,19 @@ module.exports = function (grunt) {
             var file = files[index];
             if(filesToIgnore)
             {
+                var shouldIgnore = false;
                 for(var i in filesToIgnore)
                 {
                     var ignore = filesToIgnore[i];
-                    if(file.match(ignore))
+                    if(file.match(ignore) !== null)
                     {
-                        continue;
+                        shouldIgnore = true;
+                        break;
                     }
+                }
+                if(shouldIgnore)
+                {
+                    continue;
                 }
             }
             var relativeFilePath = file;

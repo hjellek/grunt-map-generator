@@ -44,7 +44,7 @@ module.exports = function (grunt) {
                     sourceDir: "test/fixtures",
                     extension: '.html',
                     ignore: [
-                        /.*\.file/
+                        "c.html"
                     ],
                     template: function(file, basePath)
                     {

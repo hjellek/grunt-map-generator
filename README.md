@@ -1,9 +1,9 @@
 # grunt-map-generator
 
-> Inject app details in RequireJS config
+> Grunt task for generating a map of files
 
 ## Getting Started
-This plugin requires Grunt `~0.4.5`
+This plugin requires Grunt `~0.4.4`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -51,33 +51,25 @@ A string value that is used to do something else with whatever else.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+#### Options
+In this example, we scan a folder for HTML files specifically ignore the c.html file and output it using to "test/tmp"result" with each file run through the template function.
 
 ```js
 grunt.initConfig({
-  cordova_requirejs_replace_config: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  cordova_requirejs_replace_config: {
+  "grunt-map-generator": {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+        banner: 'Supports banner!\n',
+        out: "test/tmp/result",
+        sourceDir: "test/fixtures",
+        extension: '.html',
+        ignore: [
+            /c\.html/
+        ],
+        template: function(file, basePath)
+        {
+            return file+"\n";
+        }
+    }
   },
 });
 ```
