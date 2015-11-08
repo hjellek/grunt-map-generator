@@ -35,7 +35,6 @@ module.exports = function (grunt) {
         {
             text = banner + text;
         }
-        console.log(text);
         fs.writeFileSync(outFile, text);
     });
 
