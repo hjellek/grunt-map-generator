@@ -23,7 +23,7 @@ module.exports = function (grunt) {
         //var files = this.options().files;
 
         var banner = this.options().banner;
-        var outFile = path.resolve(this.options().out);
+        var outFile = path.resolve(this.options().outFile);
         var sourceDir = path.resolve(this.options().sourceDir);
         var ignores = this.options().ignore || [];
         var templateToRender = this.options().template || defaultModuleTemplate;

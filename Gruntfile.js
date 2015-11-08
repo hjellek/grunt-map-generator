@@ -40,7 +40,7 @@ module.exports = function (grunt) {
             test: {
                 options: {
                     banner: 'Supports banner!\n',
-                    out: "test/tmp/result",
+                    outFile: "test/tmp/result",
                     sourceDir: "test/fixtures",
                     extension: '.html',
                     ignore: [

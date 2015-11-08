@@ -24,30 +24,61 @@ In your project's Gruntfile, add a section named `grunt-map-generator` to the da
 
 ```js
 grunt.initConfig({
-  grunt-map-generator: {
+  "grunt-map-generator": {
     options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+        banner: undefined,
+        outFile: "test/tmp/result", // file to output to
+        sourceDir: "test/fixtures", // directory to scan
+        extension: '.html', // file extensions to look for
+        ignore: [ // list of files to ignore. String and RegExp support
+            /c\.html/
+        ],
+        template: function(file, basePath) // template to create each file entry in out file
+        {
+            return file+"\n";
+        }
+    }
   },
 });
 ```
 
 ### Options
 
-#### options.separator
+#### options.banner
 Type: `String`
-Default value: `',  '`
+Default value: `undefined`
 
-A string value that is used to do something with whatever.
+A string value that is added at top of out file.
 
-#### options.punctuation
+#### options.outFile
 Type: `String`
-Default value: `'.'`
+Default value: `undefined`
 
-A string value that is used to do something else with whatever else.
+A string value where the result map will be saved to
+
+#### options.sourceDir
+Type: `String`
+Default value: `undefined`
+
+A string value where the map generator will scan for files
+
+#### options.extension
+Type: `String`
+Default value: `undefined`
+
+A string value representing the file extension the map generator will look for
+
+#### options.ignore
+Type: `Array`
+Default value: `undefined`
+
+An array of `String` and `RegExp` values. Files matching these values will be ignored.
+
+#### options.template
+Type: `Function`
+Default value: `Function`
+
+A `Function` that will be used to create the each file entry in the resulting map.
 
 ### Usage Examples
 
@@ -59,7 +90,7 @@ grunt.initConfig({
   "grunt-map-generator": {
     options: {
         banner: 'Supports banner!\n',
-        out: "test/tmp/result",
+        outFile: "test/tmp/result",
         sourceDir: "test/fixtures",
         extension: '.html',
         ignore: [
