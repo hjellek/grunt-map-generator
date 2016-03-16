@@ -30,12 +30,22 @@ module.exports = function (grunt) {
         var extension = this.options().extension;
 
         var files = getFilesInPath(sourceDir, null, ignores, extension);
-        var text = writeModuleMap(sourceDir, files, templateToRender);
+        var newContent = writeModuleMap(sourceDir, files, templateToRender);
         if(banner)
         {
-            text = banner + text;
+            newContent = banner + newContent;
         }
-        fs.writeFileSync(outFile, text);
+        var currentContent;
+        try
+        {
+            currentContent = fs.readFileSync(outFile);
+        }
+        catch(error)
+        {}
+        if(currentContent != newContent)
+        {
+            fs.writeFileSync(outFile, newContent);
+        }
     });
 
     function getFilesInPath(basePath, prependPath, filesToIgnore, extension)
