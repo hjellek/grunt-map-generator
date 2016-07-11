@@ -42,7 +42,7 @@ module.exports = function (grunt) {
         }
         catch(error)
         {}
-        if(currentContent != newContent)
+        if(currentContent !== newContent)
         {
             fs.writeFileSync(outFile, newContent);
         }
@@ -83,9 +83,21 @@ module.exports = function (grunt) {
                 var subFiles = getFilesInPath(basePath + '/' + file, relativeFilePath, filesToIgnore, extension);
                 result = result.concat(subFiles);
             }
-            else if(file.substr(-(extension.length)) === extension)
+            else if(typeof extension === 'string' && file.substr(-(extension.length)) === extension)
             {
                 result.push(relativeFilePath);
+            }
+            else if(Object.prototype.toString.call( extension ) === '[object Array]')
+            {
+                for(var j = 0; j < extension.length; j++)
+                {
+                    var currentExtension = extension[j];
+                    if(file.substr(-(currentExtension.length)) === currentExtension)
+                    {
+                        result.push(relativeFilePath);
+                    }
+                }
+
             }
         }
         return result;
