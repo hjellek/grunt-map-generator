@@ -22,7 +22,8 @@ module.exports = function (grunt) {
         //// Merge task-specific and/or target-specific options with these defaults.
         //var files = this.options().files;
 
-        var banner = this.options().banner;
+        var banner = this.options().banner || this.options.topBanner;
+        var bottomBanner = this.options().bottomBanner;
         var outFile = path.resolve(this.options().outFile);
         var sourceDir = path.resolve(this.options().sourceDir);
         var ignores = this.options().ignore || [];
@@ -42,6 +43,10 @@ module.exports = function (grunt) {
         }
         catch(error)
         {}
+        if(bottomBanner)
+        {
+            newContent += bottomBanner;
+        }
         if(currentContent !== newContent)
         {
             fs.writeFileSync(outFile, newContent);
