@@ -39,7 +39,7 @@ module.exports = function (grunt) {
         var currentContent;
         try
         {
-            currentContent = fs.readFileSync(outFile);
+            currentContent = fs.readFileSync(outFile).toString();
         }
         catch(error)
         {}
