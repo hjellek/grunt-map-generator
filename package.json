@@ -1,7 +1,7 @@
 {
   "name": "grunt-map-generator",
   "description": "Generate map of files, for example dustjs templates in TypeScript",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/hjellek/grunt-map-generator",
   "author": {
     "name": "Knut Eirik Leira Hjelle",
